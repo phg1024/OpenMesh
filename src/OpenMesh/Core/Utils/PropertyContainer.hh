@@ -120,12 +120,9 @@ public:
     Properties::const_iterator p_it = properties_.begin();
     for (int idx=0; p_it != properties_.end(); ++p_it, ++idx)
     {
-      if (*p_it != NULL &&
-         (*p_it)->name() == _name  //skip deleted properties
-// Skip type check
-#ifndef OM_FORCE_STATIC_CAST
+      if (*p_it != NULL && //skip deleted properties
+         (*p_it)->name() == _name  
           && dynamic_cast<PropertyT<T>*>(properties_[idx]) != NULL //check type
-#endif
          )
       {
         return BasePropHandleT<T>(idx);
